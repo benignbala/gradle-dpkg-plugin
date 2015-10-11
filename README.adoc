@@ -1,0 +1,2 @@
+= gradle-dpkg-plugin
+A Gradle plugin to create Debian packages
