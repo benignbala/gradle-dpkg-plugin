@@ -34,7 +34,7 @@ the gradle build file.
 ....
 dpkg {
     pkgName 'my_package'
-    srcDir '/debian/pkgs/my_package'
+    srcDir file('/debian/pkgs/my_package')
 }
 ....
 
