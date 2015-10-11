@@ -1,8 +1,18 @@
+buildscript {
+    repositories {
+	jcenter()
+    }
+    dependencies {
+	classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+    }
+}
+
 group 'org.benignbala.gradle.dpkg'
-version '0.1-SNAPSHOT'
+version '0.1-alpha'
 
 apply plugin: 'groovy'
 apply plugin: 'maven'
+apply plugin: 'com.jfrog.bintray'
 repositories {
     mavenCentral()
 }
@@ -11,4 +21,26 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
     compile gradleApi()
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+bintray {
+    user = "benignbala"
+    key = bintrayApiKey
+    publish = true
+    filesSpec {
+	from 'build/libs'
+	into '.'
+    }
+    pkg {
+	repo = "maven"
+	name = "gradle-dpkg-plugin"
+	desc = "A Gradle plugin to create Debian packages"
+	licenses = ["Apache-2.0"]
+	vcsUrl = "https://github.com/benignbala/gradle-dpkg-plugin.git"
+	publicDownloadNumbers = true
+	version {
+	    name = '0.1-alpha'
+	    desc = 'First release of the groovy-iniparser plugin'
+	}
+    }
 }
