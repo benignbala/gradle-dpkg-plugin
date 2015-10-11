@@ -17,7 +17,7 @@ class DpkgPackageTask extends DefaultTask {
         PackageMaker.makeDeb(project, DPKG_COMMAND, args, pkgName, srcDir)
     }
 
-    static final String DPKG_COMMAND = "echo"
+    static final String DPKG_COMMAND = "dpkg"
     private String pkgName
     private File srcDir
     private List<String> args = ["-b"]
