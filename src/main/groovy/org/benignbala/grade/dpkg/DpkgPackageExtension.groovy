@@ -10,7 +10,7 @@ import org.gradle.util.CollectionUtils
  * @author Balachandran Sivakumar
  */
 class DpkgPackageExtension {
-    static final String EXTENSTION_NAME = "dpkg"
+    static final String EXTENSION_NAME = "dpkg"
     String executable = "dpkg"
 
     DpkgPackageExtension(Project p) {
@@ -53,26 +53,32 @@ class DpkgPackageExtension {
         this.srcDir = f
     }
 
-    @Input
+    @InputFile
     @CompileDynamic
-    List<String> getArgs() {
-        CollectionUtils.stringize(args)
+    void srcDir(String f) {
+      this.srcDir = new File(f)
     }
 
     @Input
     @CompileDynamic
-    void setArgs(String arg) {
-        this.args.add(arg)
+    Map<String, String> getControlProp() {
+	this.controlProp
     }
 
     @Input
     @CompileDynamic
-    void args(Object... args) {
-        this.args.addAll(args as List)
+    void setControlProp(Map props) {
+	this.controlProp = props
     }
 
+    @Input
+    @CompileDynamic
+    void controlProp(Map props) {
+	this.controlProp += props
+    }
+    
     final Project project
     private String pkgName
     private File srcDir
-    private List<String> args
+    private Map controlProp = [:]
 }

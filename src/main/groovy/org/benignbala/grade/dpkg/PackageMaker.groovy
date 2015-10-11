@@ -9,16 +9,23 @@ import org.gradle.process.ExecResult
 class PackageMaker {
     static ExecResult makeDeb(Project project, String cmd, List<String> params, String pkgName, File srcDir) {
         project.exec {
-            if (srcDir == null) {
-                srcDir = project.extensions.findByName(DpkgPackageExtension.EXTENSTION_NAME)?.srcDir ?: ""
-            }
-
-            if (params == null) {
-                params = project.extensions.findByName(DpkgPackageExtension.EXTENSTION_NAME)?.args ?: []
-            }
             executable = cmd
             params.add(srcDir.absolutePath)
             args = params
         }
+    }
+
+    static void generateControlFile(Project project, File srcDir) {
+	def DEBIAN = new File(srcDir.absolutePath + "/DEBIAN")
+	if (!DEBIAN.exists()) {
+	    DEBIAN.mkdirs()
+	}
+
+	Map<String, String> control = project.extensions.findByName(DpkgPackageExtension.EXTENSION_NAME)?.controlProp ?: [:]
+	new File(DEBIAN, 'control').withWriter { f ->
+	    control.each {prop, val ->
+		f.writeLine(prop + ": " + val)
+	    }
+	}
     }
 }

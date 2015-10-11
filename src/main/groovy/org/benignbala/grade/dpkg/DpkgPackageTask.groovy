@@ -3,6 +3,8 @@ package org.benignbala.grade.dpkg
 import groovy.transform.CompileDynamic
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.Input
+
 /**
  * @author Balachandran Sivakumar
  */
@@ -11,9 +13,28 @@ class DpkgPackageTask extends DefaultTask {
 
     }
 
+    @Input
+    @CompileDynamic
+    String getPkgName() {
+	this.pkgName ?: project.extensions.getByName(DpkgPackageExtension.EXTENSION_NAME)?.pkgName
+    }
+
+    @Input
+    @CompileDynamic
+    Map getControlProp() {
+	this.controlProp ?: project.extensions.getByName(DpkgPackageExtension.EXTENSION_NAME)?.controlProp
+    }
+
+    @Input
+    @CompileDynamic
+    File getSrcDir() {
+	this.srcDir ?: project.extensions.getByName(DpkgPackageExtension.EXTENSION_NAME)?.srcDir
+    }
+    
     @TaskAction
     @CompileDynamic
     void exec() {
+	PackageMaker.generateControlFile(project, srcDir)
         PackageMaker.makeDeb(project, DPKG_COMMAND, args, pkgName, srcDir)
     }
 
@@ -21,4 +42,5 @@ class DpkgPackageTask extends DefaultTask {
     private String pkgName
     private File srcDir
     private List<String> args = ["-b"]
+    private Map controlProp = [:]
 }
