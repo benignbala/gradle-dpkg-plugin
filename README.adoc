@@ -30,5 +30,12 @@ for and the command lines flags to the dpkg tool. Subsequently, the
 task will create the control file as well by accepting arguments from
 the gradle build file.
 
+[source,groovy]
+....
+dpkg {
+    pkgName 'my_package'
+    srcDir '/debian/pkgs/my_package'
+}
+....
 
 
