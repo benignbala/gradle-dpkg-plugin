@@ -1,2 +1,34 @@
 = gradle-dpkg-plugin
 A Gradle plugin to create Debian packages
+
+== Usage
+
+[source, groovy]
+....
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.benignbala.gradle.dpkg:dpkg:0.1'
+    }
+}
+
+apply plugin: 'dpkg'
+
+....
+
+The _id_ of the plugin is *dpkg* and can be applied by calling _apply
+plugin: 'dpkg'_. The current version of the plugin is 0.1. The plugin
+can be obtained from bintray/jcenter.
+
+== Tasks
+
+The *dpkg* plugin provides one default task called _dpkg_ that can be
+configured to accept the package name, the source directory to look
+for and the command lines flags to the dpkg tool. Subsequently, the
+task will create the control file as well by accepting arguments from
+the gradle build file.
+
+
+
