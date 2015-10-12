@@ -1,4 +1,4 @@
-package org.benignbala.grade.dpkg
+package org.benignbala.gradle.dpkg
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

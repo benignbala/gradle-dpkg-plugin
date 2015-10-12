@@ -1,4 +1,4 @@
-package org.benignbala.grade.dpkg
+package org.benignbala.gradle.dpkg
 
 import groovy.transform.CompileDynamic
 import org.gradle.api.DefaultTask
@@ -34,6 +34,7 @@ class DpkgPackageTask extends DefaultTask {
     @TaskAction
     @CompileDynamic
     void exec() {
+	srcDir = getSrcDir()
 	PackageMaker.generateControlFile(project, srcDir)
         PackageMaker.makeDeb(project, DPKG_COMMAND, args, pkgName, srcDir)
     }

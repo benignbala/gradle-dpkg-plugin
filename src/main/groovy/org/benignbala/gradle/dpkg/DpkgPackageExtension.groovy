@@ -1,4 +1,4 @@
-package org.benignbala.grade.dpkg
+package org.benignbala.gradle.dpkg
 
 import groovy.transform.CompileDynamic
 import org.gradle.api.Project
@@ -41,7 +41,7 @@ class DpkgPackageExtension {
         this.srcDir
     }
 
-    @Input
+    @InputFile
     @CompileDynamic
     void setSrcDir(File dir) {
         this.srcDir = dir
