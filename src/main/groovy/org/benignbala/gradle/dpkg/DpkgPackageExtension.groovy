@@ -18,19 +18,14 @@ class DpkgPackageExtension {
     }
 
     @Input
-    @CompileDynamic
     String getPkgName() {
         this.pkgName
     }
 
-    @Input
-    @CompileDynamic
     void setPkgName(String pkg) {
         this.pkgName = pkg
     }
 
-    @Input
-    @CompileDynamic
     void  pkgName(String pkg) {
         this.pkgName = pkg
     }
@@ -41,8 +36,6 @@ class DpkgPackageExtension {
         this.srcDir
     }
 
-    @InputFile
-    @CompileDynamic
     void setSrcDir(File dir) {
         this.srcDir = dir
     }
@@ -61,18 +54,14 @@ class DpkgPackageExtension {
 
     @Input
     @CompileDynamic
-    Map<String, String> getControlProp() {
+    Map getControlProp() {
 	this.controlProp
     }
 
-    @Input
-    @CompileDynamic
     void setControlProp(Map props) {
 	this.controlProp = props
     }
 
-    @Input
-    @CompileDynamic
     void controlProp(Map props) {
 	this.controlProp += props
     }

@@ -4,6 +4,7 @@ import groovy.transform.CompileDynamic
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFile
 
 /**
  * @author Balachandran Sivakumar
@@ -14,7 +15,6 @@ class DpkgPackageTask extends DefaultTask {
     }
 
     @Input
-    @CompileDynamic
     String getPkgName() {
 	this.pkgName ?: project.extensions.getByName(DpkgPackageExtension.EXTENSION_NAME)?.pkgName
     }
@@ -25,7 +25,7 @@ class DpkgPackageTask extends DefaultTask {
 	this.controlProp ?: project.extensions.getByName(DpkgPackageExtension.EXTENSION_NAME)?.controlProp
     }
 
-    @Input
+    @InputFile
     @CompileDynamic
     File getSrcDir() {
 	this.srcDir ?: project.extensions.getByName(DpkgPackageExtension.EXTENSION_NAME)?.srcDir
