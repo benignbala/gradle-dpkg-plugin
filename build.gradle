@@ -40,7 +40,7 @@ bintray {
 	publicDownloadNumbers = true
 	version {
 	    name = '0.1-alpha'
-	    desc = 'First release of the groovy-iniparser plugin'
+	    desc = 'First release of the gradle dpkg plugin'
 	}
     }
 }
